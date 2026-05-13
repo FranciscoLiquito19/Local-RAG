@@ -1,4 +1,4 @@
-Local RAG
+LOCAL RAG
 
 A fully local Retrieval-Augmented Generation (RAG) chatbot that runs 100% on your machine ; no cloud, no API keys, no data leaving your PC.
 
