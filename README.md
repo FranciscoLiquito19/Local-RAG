@@ -1,10 +1,10 @@
-# 🧠 Local RAG
+Local RAG
 
-A fully local Retrieval-Augmented Generation (RAG) chatbot that runs 100% on your machine — no cloud, no API keys, no data leaving your PC.
+A fully local Retrieval-Augmented Generation (RAG) chatbot that runs 100% on your machine ; no cloud, no API keys, no data leaving your PC.
 
 Built with a RTX 5070 (12GB VRAM) and Ryzen 5 9600X.
 
-## What it does
+What it does
 
 - Loads documents (PDF, TXT) from a local folder
 - Converts them into vector embeddings using your GPU
@@ -12,7 +12,7 @@ Built with a RTX 5070 (12GB VRAM) and Ryzen 5 9600X.
 - Answers using a local LLM (Gemma3 12B via Ollama)
 - Clean web interface built with Streamlit
 
-## Stack
+Stack
 
 | Component | Tool |
 |---|---|
@@ -22,14 +22,14 @@ Built with a RTX 5070 (12GB VRAM) and Ryzen 5 9600X.
 | Interface | Streamlit |
 | Runtime | WSL2 + CUDA |
 
-## Requirements
+Requirements
 
 - NVIDIA GPU with 8GB+ VRAM
 - WSL2 with CUDA drivers
 - Python 3.12+
 - [Ollama](https://ollama.com) installed
 
-## Setup
+Setup
 
 ```bash
 # 1. Clone the repo
@@ -56,7 +56,7 @@ streamlit run app.py
 
 Then open `http://localhost:8501` in your browser.
 
-## Notes
+Notes
 
 - First run downloads the embedding model (~133MB)
 - Documents are re-indexed on every run (ChromaDB persistence coming soon)
