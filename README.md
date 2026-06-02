@@ -1,10 +1,10 @@
-LOCAL RAG
+# 🧠 Local RAG
 
-A fully local Retrieval-Augmented Generation (RAG) chatbot that runs 100% on your machine ; no cloud, no API keys, no data leaving your PC.
+A fully local Retrieval-Augmented Generation (RAG) chatbot that runs 100% on your machine — no cloud, no API keys, no data leaving your PC.
 
 Built with a RTX 5070 (12GB VRAM) and Ryzen 5 9600X.
 
-What it does
+## What it does
 
 - Loads documents (PDF, TXT) from a local folder
 - Converts them into vector embeddings using your GPU
@@ -12,7 +12,7 @@ What it does
 - Answers using a local LLM (Gemma3 12B via Ollama)
 - Clean web interface built with Streamlit
 
-Stack
+## Stack
 
 | Component | Tool |
 |---|---|
@@ -21,15 +21,39 @@ Stack
 | RAG framework | LlamaIndex |
 | Interface | Streamlit |
 | Runtime | WSL2 + CUDA |
+| Containers | Docker + Docker Compose |
 
-Requirements
+## Requirements
 
 - NVIDIA GPU with 8GB+ VRAM
-- WSL2 with CUDA drivers
+- WSL2 with CUDA drivers + NVIDIA Container Toolkit
+- Docker Desktop (WSL2 backend)
 - Python 3.12+
-- [Ollama](https://ollama.com) installed
 
-Setup
+## Setup — Docker (recommended)
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/FranciscoLiquito19/Local-RAG.git
+cd Local-RAG
+
+# 2. Add your documents
+mkdir docs
+# Place your PDF or TXT files inside /docs
+
+# 3. Start everything
+docker compose up --build
+```
+
+Then open `http://localhost:8501` in your browser.
+
+On first run, pull the model inside the Ollama container:
+
+```bash
+docker exec -it rag-local-ollama-1 ollama pull gemma3:12b
+```
+
+## Setup — Local (without Docker)
 
 ```bash
 # 1. Clone the repo
@@ -56,7 +80,7 @@ streamlit run app.py
 
 Then open `http://localhost:8501` in your browser.
 
-Notes
+## Notes
 
 - First run downloads the embedding model (~133MB)
 - Documents are re-indexed on every run (ChromaDB persistence coming soon)
