@@ -1,3 +1,4 @@
+import torch
 import streamlit as st
 from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.llms.ollama import Ollama
@@ -9,10 +10,11 @@ st.caption("Running 100% on your PC with RTX 5070")
 
 @st.cache_resource(show_spinner="A carregar documentos e modelo...")
 def load_engine():
-    Settings.llm = Ollama(model="gemma3:12b", request_timeout=120.0)
+    Settings.llm = Ollama(model="gemma3:12b", base_url="http://ollama:11434", request_timeout=120.0)
+    device = "cuda" if torch.cuda.is_available() else "cpu"
     Settings.embed_model = HuggingFaceEmbedding(
         model_name="BAAI/bge-small-en-v1.5",
-        device="cuda"
+        device=device
     )
     docs = SimpleDirectoryReader("docs").load_data()
     index = VectorStoreIndex.from_documents(docs)
